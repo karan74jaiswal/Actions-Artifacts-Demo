@@ -32,8 +32,8 @@ jobs:
       - name: Uploading Artifacts
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: dist
-          path: dist/
+          name: dist-files
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -42,11 +42,11 @@ jobs:
         run: echo "Deploying..."
 
       - name: Making a folder for downloading Artifacts
-        run: artifacts_downloaded/
+        run: mkdir artifacts_downloaded
       - name: Downloading Artifacts
         uses: actions/download-artifact@v2.1.1
         with:
-          name: dist
-          path: artifacts_downloaded/
+          name: dist-files
+          path: artifacts_downloaded
       - name: Printing the downloaded Artifacts
         run: ls
