@@ -25,7 +25,9 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run 
-        
+      - name: Making a Folder for uploading Artifacts
+        run: mkdir dist/
+
         #Uploading Artifacts 
       - name: Uploading Artifacts
         uses: actions/upload-artifact@v3.1.2
@@ -38,6 +40,9 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploying..."
+
+      - name: Making a folder for downloading Artifacts
+        run: artifacts_downloaded/
       - name: Downloading Artifacts
         uses: actions/download-artifact@v2.1.1
         with:
