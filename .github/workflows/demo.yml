@@ -25,8 +25,6 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run 
-      - name: Making a Folder for uploading Artifacts
-        run: mkdir -p dist
 
         #Uploading Artifacts 
       - name: Uploading Artifacts
