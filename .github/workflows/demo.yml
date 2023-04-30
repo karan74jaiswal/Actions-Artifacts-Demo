@@ -41,10 +41,10 @@ jobs:
 
       # - name: Making a folder for downloading Artifacts
       #   run: mkdir artifacts_downloaded
-      #- name: Downloading Artifacts
-       # uses: actions/download-artifact@v2.1.1
-        #with:
-         # name: dist-files
-          # path: artifacts_downloaded
-      #- name: Printing the downloaded Artifacts
-       # run: ls
+      - name: Downloading Artifacts
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: dist-files
+          path: artifacts_downloaded
+      - name: Printing the downloaded Artifacts
+        run: ls
