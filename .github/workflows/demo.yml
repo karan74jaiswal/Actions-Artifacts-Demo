@@ -24,10 +24,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build website
-        run: npm run build
+        run: npm run 
+        
+        #Uploading Artifacts 
+      - name: Uploading Artifacts
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: dist
+          path: dist/
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run: echo "Deploying..."
+      - name: Downloading Artifacts
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: dist
+          path: artifacts_downloaded/
+      - name: Printing the downloaded Artifacts
+        run: ls
