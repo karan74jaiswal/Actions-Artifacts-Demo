@@ -45,6 +45,6 @@ jobs:
         uses: actions/download-artifact@v2.1.1
         with:
           name: dist-files
-          path: artifacts_downloaded
+          #path: artifacts_downloaded
       - name: Printing the downloaded Artifacts
         run: ls
