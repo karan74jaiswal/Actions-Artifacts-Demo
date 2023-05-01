@@ -18,13 +18,25 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{steps.publish.outputs.script-file}}
     steps:
+
       - name: Get code
+        id: checkingOut-code
         uses: actions/checkout@v3
+
       - name: Install dependencies
+        id: Installing-Dependencies
         run: npm ci
+      
       - name: Build website
+        id: Making-a-build
         run: npm run build
+
+      - name: Publishing Outputs
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo "::set-output name=script-file::{}" ";"
 
         #Uploading Artifacts 
       - name: Uploading Artifacts
@@ -34,10 +46,14 @@ jobs:
           path: dist
   deploy:
     needs: build
+
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run: echo "Deploying..."
+
+      - name: Getting The Output from the Previous Job
+        run: echo ${{needs.build.outputs.script-file}}
 
       # - name: Making a folder for downloading Artifacts
       #   run: mkdir artifacts_downloaded
